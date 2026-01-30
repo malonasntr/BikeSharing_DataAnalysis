@@ -4,16 +4,21 @@ import streamlit as st
 import plotly.graph_objects as go
 sns.set(style='dark')
 
+import os
+
 def load_data():
-    day_df = pd.read_csv("day_clean.csv")
-    hour_df = pd.read_csv("hour_clean.csv")
+    base_dir = os.path.dirname(__file__)
+    day_path = os.path.join(base_dir, "day_clean.csv")
+    hour_path = os.path.join(base_dir, "hour_clean.csv")
+
+    day_df = pd.read_csv(day_path)
+    hour_df = pd.read_csv(hour_path)
 
     day_df['dateday'] = pd.to_datetime(day_df['dateday'])
     hour_df['dateday'] = pd.to_datetime(hour_df['dateday'])
+
     return day_df, hour_df
-
-day_df, hour_df = load_data()
-
+    
 st.title("🚲 Bike Sharing Dashboard")
 st.caption("Analisis Pola Penyewaan Sepeda 2011-2012 | Dicoding Data Science")
 
@@ -426,3 +431,4 @@ fig_temp.update_layout(
 st.plotly_chart(fig_temp, use_container_width=True)
 
 st.caption('Copyright (c) Sarma Elvita Malona Sianturi')
+
