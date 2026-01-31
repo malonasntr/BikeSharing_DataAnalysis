@@ -1,7 +1,0 @@
-streamlit==1.19.0
-pandas
-numpy
-plotly
-matplotlib
-seaborn
-altair==4.2.2
